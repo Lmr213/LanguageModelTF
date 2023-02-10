@@ -93,34 +93,3 @@ class TransformerModel(nn.Module):
         key_padding_mask = torch.zeros(tokens.size())
         key_padding_mask[tokens == 2] = -torch.inf
         return key_padding_mask
-
-# num_hiddens = 512
-# vocab = 1000
-# x = Variable(torch.LongTensor([[100, 2, 412, 508], [491, 998, 1, 221]]))
-# emb = Embedding(num_hiddens, vocab)
-# out = emb(x)
-# print(out, out.shape)
-# dropout = 0.1
-# max_len = 60
-# pe = PositionalEncoding(num_hiddens, dropout, max_len)
-# outpe = pe(out)
-# print(outpe, outpe.shape)
-
-
-src = Variable(torch.LongTensor([[100, 2, 412, 508],
-                                 [491, 998, 1, 221]]))
-
-target = Variable(torch.LongTensor([[491, 998, 1, 221],
-                                    [3, 262, 16, 6]]))
-
-vocab_size= 1000
-embed_size = 128
-num_layers = 2
-num_heads = 2
-dropout = 0.2
-
-model = TransformerModel(vocab_size, embed_size, num_heads, num_layers, dropout)
-
-out = model(src, target)
-print(out.size())
-print(out)
