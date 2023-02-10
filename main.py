@@ -13,7 +13,7 @@ TEXT = torchtext.data.Field(tokenize=get_tokenizer("basic_english"),  # 一个�
                             lower=True)
 
 train_txt, val_txt, test_txt = torchtext.datasets.WikiText2.splits(TEXT)
-print(test_txt.examples[0].text[:10])  # use examples[0].text to get text object (测试集文本前十个)
+# print(test_txt.examples[0].text[:10])  # use examples[0].text to get text object (测试集文本前十个)
 
 # use train_txt to build a vocab object
 TEXT.build_vocab(train_txt)
@@ -59,15 +59,6 @@ def get_batch(source, i):
     data = source[i: i + seq_len]
     target = source[i + 1: i + 1 + seq_len].view(-1)
     return data, target
-
-# source = test_data
-# i = 2
-# x, y = get_batch(source, i)
-# print(train_txt[:10])
-# print(x)
-# print(y)
-# print(x.shape)
-# print(y.shape)
 
 # set hyperparameters
 # get the number of unrepeated words
